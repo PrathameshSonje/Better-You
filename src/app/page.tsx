@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <div className="w-full flex justify-center items-center flex-col min-h-screen grainy">
+    <div className="w-full flex justify-center items-center min-h-screen grainy">
       <div className="w-full flex justify-around items-center px-10">
         <div className="flex-col items-start h-full">
           <Typography variant="h2">Welcome to Better-You</Typography>
