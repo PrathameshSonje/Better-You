@@ -20,15 +20,15 @@ const Appbar = () => {
         <Typography>
             {session?.user?.email}
         </Typography>
-    ) : null 
+    ) : null
 
     const userImage = session?.user?.image ? (
-        <Image 
-        src={session?.user?.image} 
-        alt="Profile pic"
-        width={40}
-        height={40}
-        className="border-1 border-gray-500 rounded-full p-1"
+        <Image
+            src={session?.user?.image}
+            alt="Profile pic"
+            width={40}
+            height={40}
+            className="border-1 border-gray-500 rounded-full p-1"
         />
     ) : null
 
@@ -44,21 +44,18 @@ const Appbar = () => {
 
             <div className="items-center flex space-x-5 mr-4">
 
-                <Link 
+                <Link
                     href='/dashboard'
-                    className="text-zinc-600 items-center">
-                        Dashboard
+                    className="items-center hover:text-sky-700">
+                    Dashboard
                 </Link>
 
-                {session ? (<Link href='/api/auth/signout'>
-                    <Button variant="text">
-                        Sign out
-                    </Button>
+                {session ? (
+                <Link href='/api/auth/signout' className="hover:text-sky-700">
+                    Sign out
                 </Link>) : (
-                    <Link href='/api/auth/signin'>
-                        <Button variant="text">
-                            Log in
-                        </Button>
+                    <Link href='/api/auth/signin' className="hover:text-sky-700">
+                        Log in
                     </Link>)}
 
                 {!session ? (<Link href='/api/auth/signin'>

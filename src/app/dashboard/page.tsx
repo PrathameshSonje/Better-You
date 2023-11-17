@@ -1,8 +1,8 @@
+import connect from "@/lib/dbconfig";
 import { getServerSession } from "next-auth"
 
 const Dashboard = async () => {
     const session = await getServerSession();
-    console.log("hello");
     
     return (
         <div className="flex justify-center items-center min-h-screen">
