@@ -6,6 +6,7 @@ interface Icoures {
     title?: string
     description?: string
     image: string
+    price: number
 }
 
 const courseSchema = new Schema<Icoures>({
@@ -16,6 +17,7 @@ const courseSchema = new Schema<Icoures>({
     title: String,
     description: String,
     image: String,
+    price: Number,
 })
 
 export const Course = model('Course', courseSchema)
