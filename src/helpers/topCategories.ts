@@ -10,4 +10,6 @@ export const topCatogaries: topCatogaries[] = [
     { domain: 'It and Software', src: '/category-it-and-software-.jpg' },
     { domain: 'Marketing', src: '/category-marketing.jpg' },
     { domain: 'Personal-Development', src: '/category-personal-development.jpg' },
+    { domain: 'Photography', src: '/category-photography.jpg' },
+    { domain: 'Music', src: '/category-music.jpg' },
 ]

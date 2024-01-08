@@ -35,7 +35,9 @@ const Home = () => {
               height={300}
               quality={100}
             />
-            <span className="font-bold text-lg mt-6">{category.domain}</span>
+            <div className="mt-2">
+              <span className="font-bold text-lg">{category.domain}</span>
+            </div>
           </div>
         })}
       </div>
