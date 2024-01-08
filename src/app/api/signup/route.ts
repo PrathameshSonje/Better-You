@@ -8,7 +8,7 @@ connect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
-        const {username, password} = reqBody
+        const { username, password } = reqBody
         console.log(reqBody);
         //check for the user in the db
         const user = await User.findOne({
@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
             password
         });
         //if found return 
-        if(user) {
-            return NextResponse.json({username : username, password : password})
+        if (user) {
+            return NextResponse.json({ username: username, password: password })
         } else {
             return null
         }
@@ -34,6 +34,6 @@ export async function POST(request: NextRequest) {
         // return NextResponse.json({message: "created" , savedUser})
 
     } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 500})
+        return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }

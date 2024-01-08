@@ -9,7 +9,7 @@ const connect = async () => {
         const connection = mongoose.connection
 
         connection.on('connected', () => {
-            console.log('MongoDb Connected successfully');
+            console.log('MongoDb Connected successfullyy');
             isConnnected = true    
         })
     } catch (error) {
