@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { reasonsToStart } from "@/helpers/reasonsToStart";
 import Image from "next/image";
+import Link from "next/link";
 
 const Teach = () => {
     return <div>
@@ -15,7 +16,9 @@ const Teach = () => {
                     <p>lives - inlcuding your own</p>
                 </div>
                 <div className="mt-4">
-                    <Button size='xxl' >Get started</Button>
+                    <Link href='/courses/add'>
+                        <Button size='xxl' >Get started</Button>
+                    </Link>
                 </div>
             </div>
             <div>
@@ -40,7 +43,7 @@ const Teach = () => {
                         width={120}
                         height={120}
                         quality={100}
-                        className="mx-auto" 
+                        className="mx-auto"
                     />
                     <span className="text-xl font-bold">
                         {reasons.title}

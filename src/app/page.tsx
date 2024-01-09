@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { topCatogaries } from "@/helpers/topCategories";
 import Image from 'next/image'
+import Link from "next/link";
 
 const Home = () => {
   return <div className="min-h-screen mx-32">
@@ -9,8 +10,12 @@ const Home = () => {
         <p>The Skills you want at a</p>
         <p>Price you will love</p>
         <div className="flex gap-8 mt-8">
-          <Button size="xl">Join for Free</Button>
-          <Button size="xl">Explore</Button>
+          <Link href='/api/auth/signin'>
+            <Button size="xl">Join for Free</Button>
+          </Link>
+          <Link href='courses'>
+            <Button size="xl">Explore</Button>
+          </Link>
         </div>
       </div>
       <div className="rounded-xl overflow-hidden">

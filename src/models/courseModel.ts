@@ -1,23 +1,35 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 interface Icoures {
-    _id?: string
-    user_id?: string
-    title?: string
-    description?: string
+    _id: string
+    admin_id: mongoose.Schema.Types.ObjectId
+    title: string
+    description: string
     image: string
     price: number
 }
 
 const courseSchema = new Schema<Icoures>({
-    user_id: {
-        type: String,
+    admin_id: {
+        type: mongoose.Schema.Types.ObjectId,
         unique: true
     },
-    title: String,
-    description: String,
-    image: String,
-    price: Number,
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    }
 })
 
 export const Course = model('Course', courseSchema)

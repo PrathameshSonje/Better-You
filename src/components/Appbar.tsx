@@ -45,15 +45,21 @@ const Appbar = () => {
             <div className="items-center flex space-x-5 mr-4">
 
                 <Link
+                    href='/teach'
+                    className="items-center hover:text-sky-700">
+                    Teach on Better.
+                </Link>
+
+                <Link
                     href='/dashboard'
                     className="items-center hover:text-sky-700">
                     Dashboard
                 </Link>
 
                 {session ? (
-                <Link href='/api/auth/signout' className="hover:text-sky-700">
-                    Sign out
-                </Link>) : (
+                    <Link href='/api/auth/signout' className="hover:text-sky-700">
+                        Sign out
+                    </Link>) : (
                     <Link href='/api/auth/signin' className="hover:text-sky-700">
                         Log in
                     </Link>)}
