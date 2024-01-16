@@ -1,23 +1,21 @@
-import mongoose from "mongoose"
+import mongoose, { Connection } from "mongoose";
 
-let isConnnected: boolean = false;
+let cachedDb: Connection | null = null;
 
-const connect = async () => {
-    if(!isConnnected) {
+export async function connectToDatabase() {
     try {
-        await mongoose.connect(process.env.MONGODB_URL!)
-        const connection = mongoose.connection
+        if (cachedDb) {
+            return { db: cachedDb };
+        }
 
-        connection.on('connected', () => {
-            console.log('MongoDb Connected successfullyy');
-            isConnnected = true    
-        })
+        await mongoose.connect(process.env.MONGODB_URL!);
+        const db: Connection = mongoose.connection;
+        cachedDb = db;
+        console.log('db connected successfully');
+
+        return { db };
     } catch (error) {
-        console.log("cannot connect to db")
-        console.log(error)
-    }} else {
-        return
+        console.error('Error connecting to the database:', error);
+        throw error; // rethrow the error to handle it elsewhere if needed
     }
 }
-
-export default connect

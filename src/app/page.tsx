@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { topCatogaries } from "@/helpers/topCategories";
+import { connectToDatabase } from "@/lib/dbconfig";
 import Image from 'next/image'
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Home = () => {
   return <div className="min-h-screen mx-32">

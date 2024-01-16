@@ -1,39 +1,31 @@
-import connect from "@/lib/dbconfig";
+import { connectToDatabase } from "@/lib/dbconfig";
 import { User } from "@/models/userModel";
 import { NextResponse, NextRequest } from "next/server";
 
 //connect to db
-connect()
 
 export async function POST(request: NextRequest) {
     try {
+        await connectToDatabase();
         const reqBody = await request.json()
-        const { username, password } = reqBody
+        const { email, name } = reqBody;
         console.log(reqBody);
         //check for the user in the db
-        const user = await User.findOne({
-            username,
-            password
+        const existingUser = await User.findOne({
+            email
         });
         //if found return 
-        if (user) {
-            return NextResponse.json({ username: username, password: password })
-        } else {
-            return null
+        if (existingUser) {
+            throw new Error('Email already exists')
         }
-
-        //if not create new user
-        // const newUser = new User({
-        //     username,
-        //     password
-        // })  
-
-        // //pust the new user in the db
-        // const savedUser = await newUser.save()
-
-        // return NextResponse.json({message: "created" , savedUser})
+        const newUser = new User({
+            name: name,
+            email: email,
+        })
+        await newUser.save();
+        return NextResponse.json({ message: 'User created successfully' })
 
     } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+        return NextResponse.json({error})
     }
 }

@@ -1,8 +1,8 @@
-import connect from "@/lib/dbconfig";
+import { connectToDatabase } from "@/lib/dbconfig";
 import { NextRequest, NextResponse } from "next/server";
 
 
-connect() // connect to mongodb
+connectToDatabase() // connect to mongodb
 
 export async function GET(request: NextRequest)  {
     return NextResponse.json({name: "Prathamesh"})
