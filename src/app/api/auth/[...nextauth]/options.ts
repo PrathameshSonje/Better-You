@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { connectToDatabase } from "@/lib/dbconfig";
 import axios from "axios";
+import { User } from "@/models/userModel";
+import { error } from "console";
 
 
 export const options: NextAuthOptions = {
@@ -18,13 +20,30 @@ export const options: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ user }) {
-            await connectToDatabase();
-            const currUser = JSON.stringify(user);
-            console.log(currUser);
-            axios.post('http://localhost:3000/api/signup', user)
-                .then((resp) => console.log(resp))
-                .catch((e) => console.log(e));
-            return true
-        },
+            try {
+                await connectToDatabase();
+
+                const existingUser = await User.findOne({ email: user.email });
+
+                if (existingUser) {
+                    console.log('User already exists');
+                    return true;
+                }
+
+                const newUser = new User({
+                    name: user.name,
+                    email: user.email
+                });
+
+                await newUser.save();
+
+                console.log('New user created');
+                return true;
+            } catch (error) {
+                console.error('Error during sign-in:', error);
+                return false;
+            }
+        }
+
     }
 }

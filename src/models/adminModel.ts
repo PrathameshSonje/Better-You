@@ -4,10 +4,7 @@ interface Iadmin {
     _id: string
     email: string
     name: string
-    image?: string
     courses?: [mongoose.Schema.Types.ObjectId]
-    username?: string
-    password?: string
 }
 
 const adminSchema = new mongoose.Schema<Iadmin>({
@@ -16,7 +13,6 @@ const adminSchema = new mongoose.Schema<Iadmin>({
         type: String,
         unique: true
     },
-    image: String,
     courses: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -25,5 +21,5 @@ const adminSchema = new mongoose.Schema<Iadmin>({
     ]
 })
 
-export const Admin = mongoose.model('Admin', adminSchema)
+export const Admin = mongoose.models.Admin || mongoose.model('Admin', adminSchema)
 

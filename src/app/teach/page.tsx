@@ -1,7 +1,13 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { reasonsToStart } from "@/helpers/reasonsToStart";
 import Image from "next/image";
 import Link from "next/link";
+
+const addAdmin = () => {
+    alert('you clicked me')
+}
 
 const Teach = () => {
     return <div>
@@ -16,8 +22,10 @@ const Teach = () => {
                     <p>lives - inlcuding your own</p>
                 </div>
                 <div className="mt-4">
-                    <Link href='/courses/add'>
-                        <Button size='xxl' >Get started</Button>
+                    <Link href=''>
+                        <Button size='xxl'onClick={() => {
+                            addAdmin();
+                        }}>Get started</Button>
                     </Link>
                 </div>
             </div>

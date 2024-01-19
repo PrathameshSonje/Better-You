@@ -31,7 +31,7 @@ const Home = () => {
       </div>
     </div>
     <div className="mt-16 py-10">
-      <span className="font-bold text-3xl">Our Top Categories</span>
+      <span className="font-bold text-2xl">Our Top Categories</span>
       <div className="grid xl:grid-cols-4 sm:grid-cols-2 md:max-xl:grid-cols-3 gap-4 mt-6">
         {topCatogaries.map((category) => {
           return <div key={category.domain}>
@@ -43,7 +43,7 @@ const Home = () => {
               quality={100}
             />
             <div className="mt-2">
-              <span className="font-bold text-lg">{category.domain}</span>
+              <span className="font-bold text-md">{category.domain}</span>
             </div>
           </div>
         })}
