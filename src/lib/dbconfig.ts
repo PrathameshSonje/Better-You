@@ -5,6 +5,7 @@ let cachedDb: Connection | null = null;
 export async function connectToDatabase() {
     try {
         if (cachedDb) {
+            console.log('db already connected');
             return { db: cachedDb };
         }
 

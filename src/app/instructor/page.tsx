@@ -2,14 +2,34 @@
 
 import { Button } from "@/components/ui/button";
 import { reasonsToStart } from "@/helpers/reasonsToStart";
+import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-const addAdmin = () => {
-    alert('you clicked me')
-}
+
 
 const Teach = () => {
+
+    const { data: session } = useSession();
+
+    const addAdmin = async () => {
+        if (session) {
+            try {
+                const res = await axios.post('http://localhost:3000/api/instructor/signup', {
+                    name: session.user?.name,
+                    email: session.user?.email
+                });
+                console.log(res.data);  // Assuming the response data contains the server's response
+            } catch (error) {
+                console.log('Error adding admin:', error);
+                alert('An error occurred while adding admin. Check the console for details.');
+            }
+        } else {
+            signIn();
+        }
+    };
+
     return <div>
         <div className="flex justify-around items-center mx-12 lg:mx-24 p-8 mt-8 rounded-xl bg-gradient-to-r from-zinc-300 via-zinc-100 to-zinc-300 ">
             <div className="text">
@@ -23,7 +43,7 @@ const Teach = () => {
                 </div>
                 <div className="mt-4">
                     <Link href=''>
-                        <Button size='xxl'onClick={() => {
+                        <Button size='xxl' onClick={() => {
                             addAdmin();
                         }}>Get started</Button>
                     </Link>
