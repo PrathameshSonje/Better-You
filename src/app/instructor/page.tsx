@@ -42,7 +42,7 @@ const Teach = () => {
                     <p>lives - inlcuding your own</p>
                 </div>
                 <div className="mt-4">
-                    <Link href=''>
+                    <Link href='/instructor/courses'>
                         <Button size='xxl' onClick={() => {
                             addAdmin();
                         }}>Get started</Button>

@@ -45,7 +45,7 @@ const Appbar = () => {
             <div className="items-center flex space-x-5 mr-4">
 
                 <Link
-                    href='/teach'
+                    href='/instructor'
                     className="items-center hover:text-sky-700">
                     Teach on Better.
                 </Link>
