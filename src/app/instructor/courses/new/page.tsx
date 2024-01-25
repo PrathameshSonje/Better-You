@@ -15,9 +15,9 @@ const NewCourse = () => {
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="w-1/4">
-        <RadioGroup defaultValue="option-one">
+    <div className="flex flex-col lg:flex-row justify-center">
+      <div className="lg:w-1/4">
+        <RadioGroup defaultValue="option-one" className="sm:max-lg:flex sm:max-lg:justify-around sm:max-lg:items-center">
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="option-one" id="option-one" onClick={() => { onSubmit('option-one') }} />
             <Label htmlFor="option-one">Course landing page</Label>
@@ -33,7 +33,7 @@ const NewCourse = () => {
         </RadioGroup>
         {`current card: ${CurrCard}`}
       </div>
-      <div className="w-3/4">
+      <div className="lg:w-3/4">
         {CurrCard === 'option-one' && <CourseLanding />}
         {CurrCard === 'option-two' && <PricingCard />}
         {CurrCard === 'option-three' && <PromotionsCard />}

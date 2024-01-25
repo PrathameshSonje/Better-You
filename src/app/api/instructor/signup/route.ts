@@ -3,7 +3,6 @@ import { Admin } from "@/models/adminModel";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-    console.log('hi from routes');
     
     try {
         await connectToDatabase();

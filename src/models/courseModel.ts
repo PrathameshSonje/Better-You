@@ -12,7 +12,6 @@ interface Icoures {
 const courseSchema = new Schema<Icoures>({
     admin_id: {
         type: mongoose.Schema.Types.ObjectId,
-        unique: true
     },
     title: {
         type: String,
@@ -32,4 +31,4 @@ const courseSchema = new Schema<Icoures>({
     }
 })
 
-export const Course = model('Course', courseSchema)
+export const Course = mongoose.models.Course || model('Course', courseSchema)
