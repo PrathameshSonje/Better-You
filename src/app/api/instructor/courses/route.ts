@@ -2,26 +2,24 @@ import { connectToDatabase } from "@/lib/dbconfig";
 import { Admin } from "@/models/adminModel";
 import { Course } from "@/models/courseModel";
 import { NextRequest, NextResponse } from "next/server";
+import { headers } from 'next/headers'
 
 export async function GET(request: NextRequest) {
     try {
-        console.log(request);
         await connectToDatabase();
-        console.log('here1');
-        const req = await request.json();
-        console.log('here2');
-        const admin = await Admin.findById(req.admin_id)
-        console.log('here3');
+        const headerList = headers();
+        const admin_id = headerList.get('admin_id');
+        const admin = await Admin.findById(admin_id);
         if (!admin) {
             // Return a proper response to the client if admin is not found
-            console.log('here4');
             return NextResponse.json({
                 error: 'Admin not found'
             });
         }
-        const courses = await Course.findById(req.admin_id)
+        const courses = await Course.findOne({
+            admin_id: "65ac103efbcaec39ae2bc5fb"
+        })
         // Return the courses as a response
-        console.log('here5');
         return NextResponse.json(courses);
     } catch (error) {
         console.error('Error retrieving courses by admin ID:', error);
