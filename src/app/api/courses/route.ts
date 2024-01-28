@@ -1,9 +1,13 @@
-//API to get get all the courses
+import { connectToDatabase } from "@/lib/dbconfig";
+import { Course } from "@/models/courseModel";
+import { NextRequest, NextResponse } from "next/server";
 
-import { Course } from "@/models/courseModel"
-
-export const GET = async (req: Request) => {
-    const courses = await Course.findOne();
-    console.log(courses);
-    
+export async function GET(request: NextRequest) {
+    try {
+        await connectToDatabase();
+        const courses = await Course.find();
+        return NextResponse.json(courses);
+    } catch (error) {
+        console.log(error);
+    }
 }

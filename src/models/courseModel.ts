@@ -12,6 +12,7 @@ interface Icoures {
 const courseSchema = new Schema<Icoures>({
     admin_id: {
         type: mongoose.Schema.Types.ObjectId,
+        unique: false
     },
     title: {
         type: String,

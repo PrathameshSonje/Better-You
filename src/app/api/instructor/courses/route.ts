@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
                 error: 'Admin not found'
             });
         }
-        const courses = await Course.findOne({
-            admin_id: "65ac103efbcaec39ae2bc5fb"
+        const courses = await Course.find({
+            admin_id: admin_id
         })
         // Return the courses as a response
         return NextResponse.json(courses);
