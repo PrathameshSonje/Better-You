@@ -9,7 +9,7 @@ export async function GET() {
     try {
         await connectToDatabase();
         const headerList = headers();
-        const user_id = headerList.get('user_id');//replace with cookies
+        const user_id = headerList.get('user_id'); //replace with cookies
         const currUser = await User.findById(user_id);
         const coursesIDs = currUser.courses;
         const coursePromises = coursesIDs.map(async (id: any) => {

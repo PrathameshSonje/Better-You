@@ -5,6 +5,7 @@ interface Iuser {
     name: string
     email: string
     courses?: [Schema.Types.ObjectId]
+    cart?: [Schema.Types.ObjectId]
 }
 
 const userSchema = new Schema<Iuser>({
@@ -13,6 +14,12 @@ const userSchema = new Schema<Iuser>({
         type: String,
     },
     courses: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Course"
+        }
+    ],
+    cart: [
         {
             type: Schema.Types.ObjectId,
             ref: "Course"
