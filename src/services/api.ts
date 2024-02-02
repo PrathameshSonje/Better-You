@@ -11,3 +11,7 @@ export const getCourses = async () => {
         (await axiosInstance.get<courses[]>("api/courses")).data
     );
 }
+
+export const createTodo = async (data: courses) => {
+    await axiosInstance.post("api/instructor/courses/new", data);
+}

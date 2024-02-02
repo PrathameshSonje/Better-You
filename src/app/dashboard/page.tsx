@@ -1,4 +1,3 @@
-import connect from "@/lib/dbconfig";
 import { getServerSession } from "next-auth"
 
 const Dashboard = async () => {

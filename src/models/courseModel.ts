@@ -1,4 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
+import { string } from "zod";
 
 interface Icoures {
     _id: string
@@ -6,7 +7,8 @@ interface Icoures {
     title: string
     description: string
     image: string
-    price: number
+    price: string
+    category: string
 }
 
 const courseSchema = new Schema<Icoures>({
@@ -27,8 +29,11 @@ const courseSchema = new Schema<Icoures>({
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true
+    },
+    category: {
+        type: String
     }
 })
 

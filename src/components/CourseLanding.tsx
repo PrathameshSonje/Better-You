@@ -21,11 +21,13 @@ import {
 } from "@/components/ui/select"
 import { Label } from "./ui/label";
 import { categories } from "@/helpers/categories";
+import { priceTiers } from "@/helpers/priceTiers";
+import { currencies } from "@/helpers/currencies";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { Button } from "./ui/button";
-import toast from "react-hot-toast";
-import { StringSchemaDefinition } from "mongoose";
+import { useCreateCourse } from "@/services/mutations";
+import { Toaster, toast } from "react-hot-toast";
 
 const formSchema = Z.object({
     title: Z.string().max(55, {
@@ -37,6 +39,7 @@ const formSchema = Z.object({
     description: Z.string(),
     category: Z.string(),
     image: Z.string(),
+    price: Z.string(),
 })
 
 const CourseLanding = () => {
@@ -49,12 +52,17 @@ const CourseLanding = () => {
             description: "",
             category: "",
             image: "",
+            price: "",
         }
     })
 
+    const createCoursesMutation = useCreateCourse();
+
     const onSubmit = (values: Z.infer<typeof formSchema>) => {
+        values.image = selectedImage!;
         console.log(values);
-        console.log(selectedImage);
+        createCoursesMutation.mutate(values);
+        toast.success('Course saved succesfully')
     }
 
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -72,6 +80,10 @@ const CourseLanding = () => {
     }
 
     return <div>
+        <Toaster
+            position="bottom-right"
+            reverseOrder={false}
+        />
         <Card>
             <CardHeader>
                 <CardTitle>Course Landing Page</CardTitle>
@@ -211,15 +223,73 @@ const CourseLanding = () => {
                                                 <Input
                                                     type="file"
                                                     onChange={handleImageChange}
+
                                                 />
-                                                
+
                                             </div>
                                         </div>
                                     </FormControl>
                                 </FormItem>
+
+
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="price"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Pricing
+                                    </FormLabel>
+                                    <FormControl>
+                                        <div className="grid grid-cols-12 gap-6 pt-4">
+                                            <div className="col-span-2">
+                                                <Label htmlFor="currency">Currency</Label>
+                                                <Select>
+                                                    <SelectTrigger id="currency">
+                                                        <SelectValue placeholder="Select" />
+                                                    </SelectTrigger>
+                                                    <SelectContent position="popper">
+                                                        {currencies.map((value) => {
+                                                            return <div>
+                                                                <SelectItem value={value}
+                                                                >
+                                                                    {value}
+                                                                </SelectItem>
+                                                            </div>
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            <div className="col-span-4">
+                                                <Label htmlFor="price">Price</Label>
+                                                <Select onValueChange={field.onChange}>
+                                                    <SelectTrigger id="price">
+                                                        <SelectValue placeholder="Select" />
+                                                    </SelectTrigger>
+                                                    <SelectContent position="popper">
+                                                        {priceTiers.map((value) => {
+                                                            return <div>
+                                                                <SelectItem value={value}
+                                                                >
+                                                                    {value}
+                                                                </SelectItem>
+                                                            </div>
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                    </FormControl>
+                                </FormItem>
+
+
                             )}
                         />
                         <Button type="submit">Submit</Button>
+
                     </form>
                 </Form>
             </CardContent>

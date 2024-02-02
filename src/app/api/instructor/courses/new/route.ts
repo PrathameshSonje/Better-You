@@ -2,16 +2,24 @@ import { connectToDatabase } from "@/lib/dbconfig";
 import { Admin } from "@/models/adminModel";
 import { Course } from "@/models/courseModel";
 import mongoose from "mongoose";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
         await connectToDatabase();
         const req = await request.json();
+        const admin_id = cookies().get('admin_id');
+        if(admin_id) {
+            console.log('admin id is there');
+            console.log(admin_id.value);
+        } else {
+            console.log('no admin id');
+        }
         let existingAdmin;
 
         try {
-            existingAdmin = await Admin.findById(req.admin_id);
+            existingAdmin = await Admin.findById(admin_id?.value);
         } catch (error) {
             return NextResponse.json({
                 msg: "Admin not found in the database"
@@ -29,7 +37,8 @@ export async function POST(request: NextRequest) {
             description: req.description,
             image: req.image,
             price: req.price,
-            admin_id: req.admin_id
+            category: req.category,
+            admin_id: admin_id?.value
         });
 
         const session = await mongoose.startSession();

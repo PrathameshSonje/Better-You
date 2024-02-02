@@ -36,7 +36,7 @@ const Courses = () => {
                             </div>
 
                             <div className="px-3 pb-3">
-                                <p>Price: <span className="font-semibold">{item.price}</span></p>
+                                <p><span className="text-sm"></span><span className="font-semibold">{`\u20B9${item.price}`}</span></p>
                             </div>
                         </Card>
                     </div>
