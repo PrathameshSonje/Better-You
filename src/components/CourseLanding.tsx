@@ -62,7 +62,9 @@ const CourseLanding = () => {
         values.image = selectedImage!;
         console.log(values);
         createCoursesMutation.mutate(values);
-        toast.success('Course saved succesfully')
+        if(createCoursesMutation.isSuccess) {
+            toast.success('Course added successfully')
+        }
     }
 
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -288,7 +290,12 @@ const CourseLanding = () => {
 
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            type="submit"
+                            disabled={createCoursesMutation.isPending}
+                            >
+                            {createCoursesMutation.isPending ? 'Adding...' : 'Add course'}
+                        </Button>
 
                     </form>
                 </Form>

@@ -38,8 +38,8 @@ const Home = () => {
             <Image
               src={category.src}
               alt={category.domain}
-              width={300}
-              height={300}
+              width={200}
+              height={200}
               quality={100}
             />
             <div className="mt-2">

@@ -1,20 +1,59 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useAdminCourses } from "@/services/queries";
 import Image from "next/image";
 import Link from "next/link";
 
 const courses = () => {
+    const courseQuery = useAdminCourses();
+
     return <div>
         <div className="p-10 border border-zinc-300 m-4 shadow-lg lg:flex justify-around items-center lg:m-10">
             <div className="flex justify-center items-center">
                 Jump into Course Creation
             </div>
             <div className="flex justify-center items-center mt-12 lg:mt-0">
-                <Link href='/courses/new'>
+                <Link href='/instructor/courses/new'>
                     <Button size="xl">Create Your Course</Button>
-                </Link>  
+                </Link>
             </div>
         </div>
 
+        <div className="flex justify-center items-center">
+            Previously create Courses
+        </div>
+
+        <div className="p-4">
+                <div className="grid grid-cols-12 gap-4">
+                    {
+                        courseQuery.data?.map((item) => {
+                            return <div key={item.title} className="col-span-6 md:col-span-4 lg:col-span-3">
+                                <Card>
+                                    <div>
+                                        <Image
+                                            src={item.image}
+                                            alt="course thumbnail"
+                                            width={600}
+                                            height={135}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col p-3">
+                                        <span className="font-bold text-md">{item.title}</span>
+                                        {/* <span className="text-zinc-700 text-xs  ">{item.description}</span> */}
+                                    </div>
+
+                                    <div className="px-3 pb-3 flex justify-between">
+                                        <p><span className="text-sm"></span><span className="font-semibold">{`\u20B9${item.price}`}</span></p>
+                                        <p><span className="text-sm"></span><span className="opacity-60 hover:text-blue-600 hover:opacity-100">see more</span></p>
+                                    </div>
+                                </Card>
+                            </div>
+                        })
+                    }
+                </div>
+            </div>
 
         <div className="flex justify-center items-center my-10 lg:my-16">
             <span>Based on your experience, we think these resources will be helpful.</span>
@@ -108,7 +147,7 @@ const courses = () => {
 
         <div className="flex flex-col justify-center items-center my-10 lg:my-16 gap-8">
             <span>Are You Ready to Begin?</span>
-            <Link href='/courses/new'>
+            <Link href='/instructor/courses/new'>
                 <Button size='xl'>Create Your Course</Button>
             </Link>
         </div>

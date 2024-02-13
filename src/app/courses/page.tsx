@@ -31,12 +31,13 @@ const Courses = () => {
                                 />
                             </div>
                             <div className="flex flex-col p-3">
-                                <span className="font-bold text-lg">{item.title}</span>
-                                <span className="text-zinc-700">{item.description}</span>
+                                <span className="font-bold text-md">{item.title}</span>
+                                {/* <span className="text-zinc-700 text-xs  ">{item.description}</span> */}
                             </div>
 
-                            <div className="px-3 pb-3">
+                            <div className="px-3 pb-3 flex justify-between">
                                 <p><span className="text-sm"></span><span className="font-semibold">{`\u20B9${item.price}`}</span></p>
+                                <p><span className="text-sm"></span><span className="opacity-60 hover:text-blue-600 hover:opacity-100">see more</span></p>
                             </div>
                         </Card>
                     </div>

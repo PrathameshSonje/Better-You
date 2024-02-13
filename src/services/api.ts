@@ -15,3 +15,15 @@ export const getCourses = async () => {
 export const createTodo = async (data: courses) => {
     await axiosInstance.post("api/instructor/courses/new", data);
 }
+
+export const getMyCourses = async () => {
+    return (
+        (await axiosInstance.get<courses[]>("api/user/courses")).data
+    )
+}
+
+export const getAdminCourses = async () => {
+    return (
+        (await axiosInstance.get<courses[]>("api/instructor/courses")).data
+    )
+}

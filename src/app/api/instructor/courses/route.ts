@@ -2,14 +2,13 @@ import { connectToDatabase } from "@/lib/dbconfig";
 import { Admin } from "@/models/adminModel";
 import { Course } from "@/models/courseModel";
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 
 export async function GET(request: NextRequest) {
     try {
         await connectToDatabase();
-        const headerList = headers();
-        const admin_id = headerList.get('admin_id');
-        const admin = await Admin.findById(admin_id);
+        const admin_id = cookies().get('admin_id');
+        const admin = await Admin.findById(admin_id?.value);
         if (!admin) {
             // Return a proper response to the client if admin is not found
             return NextResponse.json({
@@ -17,7 +16,7 @@ export async function GET(request: NextRequest) {
             });
         }
         const courses = await Course.find({
-            admin_id: admin_id
+            admin_id: admin_id?.value
         })
         // Return the courses as a response
         return NextResponse.json(courses);
