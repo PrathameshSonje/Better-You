@@ -1,16 +1,22 @@
-##Better You.
+### Better You.
 
-#A Modern Course selling website developed using Next.js, TypeScript, React, Tanstack, etc.
-
-#Landing Page
-![image](https://github.com/PrathameshSonje/Better-You/assets/111238447/15820302-5d02-40eb-83d3-5d56bd8b09bd)
+A Modern Course selling website developed using Next.js, TypeScript, React, Tanstack, etc.
 
 
-#Instructor Dashboard
+Landing Page
+
+![image](https://github.com/PrathameshSonje/Better-You/assets/111238447/399f19ed-9b9b-4cfb-9e73-5110b35d5c5d)
+
+
+Instructor Dashboard
+
+
 ![image](https://github.com/PrathameshSonje/Better-You/assets/111238447/7a1d9756-6332-496a-a2c6-494c89169932)
 
 
-#Course creation page
+Course creation page
+
+
 ![image](https://github.com/PrathameshSonje/Better-You/assets/111238447/fe55da27-b854-4a9d-86d0-6505a79628e4)
 
 
